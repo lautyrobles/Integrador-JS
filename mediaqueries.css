@@ -1,18 +1,22 @@
 @media (max-width: 992px) {
-    .navbar ul {
+    .navbar-links {
         display: flex;
         flex-direction: column;
         position: absolute;
+        gap: 0;
         top: 50px;
         left: 0px;
         width: 200px;
         background-color: white;
         height: calc(100vh - 50px);
         border-right: 1px solid gray;
-        display: none;
-        /* transform: translateX(-100%); */
-        /* transition: all 0.5s ease-in;
-        opacity: 0; */
+        transform: translateX(-200%);
+        transition: all 0.6s ease;
+    }
+
+    .open-menu {
+        transform: translateX(0%);
+        transition: all 0.4s ease;
     }
 
     .navbar ul a {
@@ -27,34 +31,18 @@
         font-size: 14px;
     }
 
-    .navbar-links {
-        gap: 0;
-    }
-
-    .first-icon {
+    .menu-label {
         display: flex;
-        font-size: 25px;
+        font-size: 24px;
         order: -1;
         cursor: pointer;
-    }
-
-    .first-icon {
         color: #00308F;
-        font-size: 22px;
-        cursor: pointer;
         transition: all 0.2s ease;
     }
     
-    .first-icon:hover {
+    .menu-label:hover {
         color: #0093E9;
         transition: all 0.2s ease;
-    }
-
-    #toggle-menu:checked + .navbar ul {
-        display: flex;
-        /* transform: translate(0); */
-        /* transition: all 0.5s ease;
-        opacity: 1; */
     }
 
     #footer hr {
@@ -153,17 +141,15 @@
         position: absolute;
         top: 71px;
         left: 40px;
-        display: none;
-        /* transform: translateX(-200%); */
-        /* transition: all 0.5s ease-in;
-        opacity: 0; */
+        /* display: none; */
+        transform: translateX(-200%);
+        transition: all 0.2s ease;
     }
 
     #toggle-menu:checked ~ .header-log {
-        display: flex;
-        /* transform: translate(0); */
-        /* transition: all 0.5s ease;
-        opacity: 1; */
+        /* display: flex; */
+        transform: translateX(0%);
+        transition: all 0.8s ease;
     }
 
     .navbar ul a {

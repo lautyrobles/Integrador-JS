@@ -31,15 +31,7 @@ body::-webkit-scrollbar-thumb {
 
 /* HEADER */
 
-#toggle-menu {
-    display: none;
-}
-
-#toggle-cart {
-    display: none;
-}
-
-.first-icon {
+.menu-label {
     display: none;
 }
 
@@ -83,6 +75,7 @@ main {
 
 .header img {
     height: 130px;
+    padding: 10px 0px 5px 0px;
 }
 
 .navbar-links {
@@ -159,17 +152,22 @@ main {
     position: absolute;
     top: 50px;
     right: -15px;
+    min-width: 250px;
     padding: 20px;
     border-left: 1px solid gray;
     background-color: white;
     flex-direction: column;
-    gap: 20px;
+    gap: 5px;
     overflow-y: scroll;
     height: calc(100vh - 50px);
-    display: none;
-    /* transform: translateX(100%);
-    transition: all 0.5s ease-in;
-    opacity: 0; */
+    display: flex;
+    transform: translateX(200%);
+    transition: all 0.6s ease;
+}
+
+.open-cart {
+    transform: translateX(0%);
+    transition: all 0.4s ease;
 }
 
 .cart::-webkit-scrollbar {
@@ -181,13 +179,6 @@ main {
     background: #00308F;
     border-radius: 25px;
     border: 2px solid white;
-}
-
-#toggle-cart:checked + .cart {
-    display: flex;
-    /* transform: translate(0);
-    transition: all 0.5s ease;
-    opacity: 1; */
 }
 
 .cart h3 {
@@ -204,11 +195,29 @@ main {
     font-weight: 200;
 }
 
+.empty-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(154, 0, 0);
+    padding: 10px 0px 10px 0px;
+    font-size: 14px;
+}
+
+.show-message {
+    display: none;
+}
+
+.cart-hr {
+    margin-top: 10px;
+}
+
 .cart-item {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
+    padding: 15px 0px 15px 0px;
 }
 
 .item-data {
@@ -273,15 +282,35 @@ main {
     color: #0093E9;
 }
 
+.cart-total {
+    display: none;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    margin: 0px 20px 0px 20px;
+    padding: 10px;
+}
+
+.cart-total p {
+    color: #00308F;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.cart-total span {
+    color: rgb(36, 170, 49);
+}
+
 .btn {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     gap: 10px;
 }
 
 .cart .btn button {
-    width: 100px;
+    width: 200px;
     height: 30px;
 }
 
@@ -640,7 +669,6 @@ main {
     align-items: center;
     max-width: 1200px;
     padding: 20px 20px 0px 20px;
-    padding-top: 0px;
 }
 
 .contact-info {
@@ -655,6 +683,7 @@ main {
     color: white;
     font-weight: 700;
     font-size: 30px;
+    padding-bottom: 10px;
 }
 
 #form {

@@ -1,8 +1,15 @@
-// Agarramos los elementos que vamos a utilizar
+// Agarramos los elementos que vamos a utilizar para la seccion de categorias
 const productsContainer = document.querySelector(".products-container-cards")
 const showMoreBtn = document.querySelector(".show-more")
 const categoriesContainer = document.querySelector(".categories")
 const categoriesList = document.querySelectorAll(".category")
+// Agarramos los elementos que vamos a utilizar para el carrito
+const cartBtn = document.querySelector(".cart-label")
+const cartMenu = document.querySelector(".cart")
+const menuBtn = document.querySelector(".menu-label")
+const barsMenu = document.querySelector("navbar-links")
+
+////////////// CATEGORIAS ///////////////
 
 // 2. Creamos la funcion para renderizar los productos en el contenedor
 const renderProducts = (productsList) => {  
@@ -52,11 +59,10 @@ const applyFilter = ({ target }) => {
     productsContainer.innerHTML = '';
     if (appState.activeFilter) {
         renderFilteredProducts();
-        appState.currentProductsIndex = 0;
+        appState.currentProductsIndex = 0
         return;
     }
     renderProducts(appState.products[0]);
-    
 }
 
 // 13. Creamos una funcion para renderizar los productos filtrados
@@ -64,7 +70,6 @@ const renderFilteredProducts = () => {
     const filteredProducts = productsData.filter(
         (product) => product.category === appState.activeFilter);
     renderProducts(filteredProducts);
-    
 };
 
 // 9. Creamos una funcion para saber si el usuario esta clickeando en una categoria que no esta activa. 
@@ -104,9 +109,32 @@ const setShowMoreVisibility = () => {
 };
 
 // 1. Creamos la funcion inicializadora (init)
+
+//////////////////////// MENU HAMBURGUESA ///////////////////////////
+
+// 1. Creamos la funcion para mostrar el menu del carrito
+
+const toggleCart = () => {
+    cartMenu.classList.toggle("open-cart")
+    if (barsMenu.classList.contains("open-menu")) {
+        barsMenu.classList.remove("open-menu")
+        return 
+    }
+}
+
+const toggleMenu = () => {
+    barsMenu.classList.toggle("open-menu")
+    if (cartMenu.classList.contains("open-cart")) {
+        cartMenu.classList.remove("open-cart")
+        return
+    }
+}
+
 const init = () => {
     renderProducts(appState.products[0])
     showMoreBtn.addEventListener("click", showMoreProducts)
     categoriesContainer.addEventListener("click", applyFilter)
+    cartBtn.addEventListener("click", toggleCart)
+    menuBtn.addEventListener("click", toggleMenu)
 }
 init()

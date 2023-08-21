@@ -14,11 +14,12 @@
 </head>
 <body>
     <header class="header">
-            <img src="assets/logo-img.png" alt="Logo de la empresa">
-        <label class="first-icon" for="toggle-menu">
-            <i class="fa-solid fa-bars"></i>
-        </label>
-        <input type="checkbox" id="toggle-menu">
+            <a href="#browser"><img src="assets/logo-img.png" alt="Logo de la empresa"></a>
+
+            <div class="menu-label">
+                    <i class="fa-solid fa-bars"></i>
+            </div>
+
         <nav class="navbar">
             <ul class="navbar-links">
                 <li><a href="#browser">Inicio</a></li>
@@ -31,15 +32,19 @@
             <buttom class="log-btn"><a href="login.html">Iniciar Sesión</a></buttom>
             <buttom class="sign-btn"><a href="register.html">Registrarme</a></buttom>
         </div>
-        <label class="second-icon" for="toggle-cart">
-            <i class="fa-solid fa-cart-shopping"></i>
-        </label>
-        <input type="checkbox" id="toggle-cart">
+
+        <div class="cart-label">
+            <label class="second-icon" for="toggle-cart">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </label>
+        </div>
+            
+        <!-- <input type="checkbox" id="toggle-cart"> -->
         
         <div class="cart">
             <h3>Tus Productos</h3>
 
-            <div class="cart-item">
+            <!-- <div class="cart-item">
                 <img src="./assets/dresses/dress-1.png" alt="Icono del producto">
                 <div class="item-data">
                 <div class="item-info">
@@ -52,15 +57,26 @@
                     <span class="quantity-handler up">+</span>
                 </div>
             </div>
-            </div>
+            </div> -->
 
-            <hr>
+            
+            <hr class="cart-hr">
+            
+            <div class="empty-message">
+                <p>No tienes ningun producto en el carrito</p>
+            </div> 
+
+            <div class="cart-total">
+                <p>Total:</p>
+                <span class="total">$0</span>
+            </div>
            
             <div class="btn">
-                <button><a href="#">Vaciar</a></button>
                 <button><a href="#">Comprar</a></button>
+                <button><a href="#">Vaciar</a></button>
             </div>
         </div>
+        
 
     </header>
     <main class="main">
@@ -105,8 +121,8 @@
             <div class="categories-container">
                 <div class="categories">
                     <button class="category active">Todos</button>
-                    <button class="category" data-category="dress">Indumentaria</button>
                     <button class="category" data-category="accessories">Accesorios</button>
+                    <button class="category" data-category="dress">Indumentaria</button>
                 </div>
             </div>
             <div class="products-container-cards">
