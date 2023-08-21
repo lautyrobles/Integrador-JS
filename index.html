@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="animaciones.css">
+    <link rel="stylesheet" href="mediaqueries.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon">
+    <title>PetHub - Home</title>
+</head>
+<body>
+    <header class="header">
+            <img src="assets/logo-img.png" alt="Logo de la empresa">
+        <label class="first-icon" for="toggle-menu">
+            <i class="fa-solid fa-bars"></i>
+        </label>
+        <input type="checkbox" id="toggle-menu">
+        <nav class="navbar">
+            <ul class="navbar-links">
+                <li><a href="#browser">Inicio</a></li>
+                <li><a href="#hero">Servicios</a></li>
+                <li><a href="#products-container">Productos</a></li>
+                <li><a href="#contact">Contactanos</a></li>
+            </ul>
+        </nav>
+        <div class="header-log">
+            <buttom class="log-btn"><a href="login.html">Iniciar Sesión</a></buttom>
+            <buttom class="sign-btn"><a href="register.html">Registrarme</a></buttom>
+        </div>
+        <label class="second-icon" for="toggle-cart">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </label>
+        <input type="checkbox" id="toggle-cart">
+        
+        <div class="cart">
+            <h3>Tus Productos</h3>
+
+            <div class="cart-item">
+                <img src="./assets/dresses/dress-1.png" alt="Icono del producto">
+                <div class="item-data">
+                <div class="item-info">
+                    <h4>Chaleco Azul Aesthetic</h4>
+                    <span class="item-price">$4999</span>
+                </div>
+                <div class="item-handler">
+                    <span class="quantity-handler down">-</span>
+                    <span class="item-quantity">0</span>
+                    <span class="quantity-handler up">+</span>
+                </div>
+            </div>
+            </div>
+
+            <hr>
+           
+            <div class="btn">
+                <button><a href="#">Vaciar</a></button>
+                <button><a href="#">Comprar</a></button>
+            </div>
+        </div>
+
+    </header>
+    <main class="main">
+        <section id="browser">
+            <div class="browser-title">
+                <h1>PetHub</h1>
+                <img src="assets/portada.png" alt="Imagen de la portada">
+            </div>
+            <div class="browser-box">
+                <input type="text" class="browser-text" placeholder="¿Qué estás buscando?">
+                <button class="browser-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+        </section>
+        <section id="hero">
+            <div class="hero-info">
+                <h2>Nuestros servicios</h2>
+                <p>Somos la empresa líder en productos y accesorios para mascotas del país. Contamos con una gran variedad de beneficios para tu comodidad y la de tu gran y fiel amigo.</p>
+                <div class="hero-card">
+                    <div class="hero-benefit">
+                        <h3>Compra Segura</h3>
+                        <img src="assets/shopping-bag.png" alt="Imagen de cartera">
+                        <p>Gestionamos tus datos con absoluta confidencialidad.</p>
+                    </div>
+                    <div class="hero-benefit">
+                        <h3>Medios de pago</h3>
+                        <img src="assets/money-icon.png" alt="Imagen de dolar">
+                        <p>Aceptamos pagos en efectivo y con tarjetas a través de Mercado Pago.</p>
+                    </div>
+                    <div class="hero-benefit">
+                        <h3>Envío a domicilio</h3>
+                        <img src="assets/envio-img.png" alt="Imagen de envio">
+                        <p>Contamos con envíos a todo el país. Si vivís hasta 6 km de cada sucursal, el envío es gratis.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="products-container">
+            <div class="products-title-p">
+                <h2>Productos Destacados</h2>
+                <p>Estos son algunos de nuestros productos más destacados. En <strong>"Todos los productos"</strong>, podrás encontrar todo lo que nuestra empresa te ofrece, al mejor precio!</p>
+            </div>
+            <div class="categories-container">
+                <div class="categories">
+                    <button class="category active">Todos</button>
+                    <button class="category" data-category="dress">Indumentaria</button>
+                    <button class="category" data-category="accessories">Accesorios</button>
+                </div>
+            </div>
+            <div class="products-container-cards">
+
+                <!-- <div class="products">
+                <div class="products-cards">
+                    <div class="product-img">
+                    <img src="assets/dresses/dress-1.png" alt="Imagen de producto 1">
+                    </div>
+                    <div class="product-title">
+                        <h3>Chaleco Azul Aesthetic</h3>
+                        <p>$4999</p>
+                    </div>
+                    <div class="btn">
+                        <button><a href="#">Agregar al carrito</a></button>
+                    </div>
+                </div>
+            </div> -->
+        
+            </div>
+            <button class="show-more">Ver Mas</button>
+        </section>
+        <section id="contact">            
+                <div class="contact-info">
+                    <h2>Contáctanos</h2>
+
+                    
+
+                    <div class="contact-info-all">
+                    <div class="contact-info-list">
+                        <div class="contact-info-social">
+                            <h3>Redes Sociales</h3>
+                            <ul>
+                                <li><a href="#"><i class="fa-brands fa-twitter"></i></a> @PetHubOk</li>
+                                <li><a href="#"><i class="fa-brands fa-square-whatsapp"></i></a> +2634380152</li>
+                                <li><a href="#"><i class="fa-brands fa-square-instagram"></i></a> @PetHub</li>
+                                <li><a href="#"><i class="fa-brands fa-facebook"></i></a> PetHub Shop</li>
+                            </ul>
+                        </div>
+                        <div class="contact-info-ubication">
+                            <h3>Sucursales</h3>
+                            <ul>
+                                <li><a href="#"><i class="fa-solid fa-location-dot"></i></a> Gutierrez 11, San Martin - Mendoza</li>
+                                <li><a href="#"><i class="fa-solid fa-location-dot"></i></a> Batrolome Mitre 1225, San Nicolas - CABA</li>
+                            </ul>
+                        </div>                        
+                    </div>
+                    <div class="contact-info-map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13135.528496923102!2d-58.39457415124191!3d-34.60714210503612!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccac538ef4561%3A0x886bd97f94f84f25!2sBartolom%C3%A9%20Mitre%201225%2C%20C1036AAW%20CABA!5e0!3m2!1ses!2sar!4v1685826331975!5m2!1ses!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    </div>   
+                    
+                    <form id="form">
+                        <div class="form-text">
+                            <div class="form-data">
+                                <input type="text" id="name-input" placeholder="Nombre">
+                                <input type="text" id="lastname-input" placeholder="Apellido">
+                                <input type="email" id="email-input" placeholder="Correo Electrónico">
+                            </div>
+                            <div class="form-textarea">
+                                <textarea name="text" id="textarea" cols="30" rows="10" placeholder="Dejá tu consulta"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-btn">
+                            <button>Enviar</button>
+                        </div>
+                    </form>
+                    
+                </div>
+        </section>
+    </main>
+    <footer id="footer">
+        <hr>
+        <div class="footer-info">
+            <img src="assets/logo-img.png" alt="Imagen del footer">
+            <div class="footer-info-links">
+                <ul class="footer-info-icons">
+                    <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-square-whatsapp"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-square-instagram"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script src="data.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
