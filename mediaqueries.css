@@ -130,6 +130,11 @@
     .product-title h3 {
         height: 60px;
     }
+
+    .form-text {
+        display: flex;
+        flex-wrap: wrap;
+    }
 }
 
 @media (max-width:576px) {
@@ -141,13 +146,11 @@
         position: absolute;
         top: 71px;
         left: 40px;
-        /* display: none; */
         transform: translateX(-200%);
         transition: all 0.2s ease;
     }
 
-    #toggle-menu:checked ~ .header-log {
-        /* display: flex; */
+    .open-log {
         transform: translateX(0%);
         transition: all 0.8s ease;
     }

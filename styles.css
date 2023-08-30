@@ -35,16 +35,27 @@ body::-webkit-scrollbar-thumb {
     display: none;
 }
 
-.second-icon {
+.cart-label {
     color: #00308F;
     font-size: 22px;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
-.second-icon:hover {
+.cart-label:hover {
     color: #0093E9;
     transition: all 0.2s ease;
+}
+
+.cart-bubble {
+    background-color: #0093E9;
+    font-size: 12px;
+    border-radius: 10px;
+    padding: 0px 3px 1px 3px;
+    position: absolute;
+    right: 42px;
+    top: 6px;
+    color: white;
 }
 
 main {
@@ -283,11 +294,11 @@ main {
 }
 
 .cart-total {
-    display: none;
+    display: flex;
     justify-content: center;
     gap: 10px;
     align-items: center;
-    margin: 0px 20px 0px 20px;
+    margin: 0px 0px 0px 0px;
     padding: 10px;
 }
 
@@ -307,15 +318,18 @@ main {
     align-items: center;
     flex-direction: column;
     gap: 10px;
+    margin: 10px 0px 10px 0px;
 }
 
-.cart .btn button {
-    width: 200px;
+.btn-add {
+    max-width: 200px;
     height: 30px;
+    font-size: 14px;
+    color: #00308F;
 }
 
-.cart .btn a {
-    font-size: 14px;
+.btn-add:hover {
+    color: #0093E9;
 }
 
 /* BUSCADOR */
@@ -648,6 +662,7 @@ main {
     color: #00308F;
     background-color: white;
     transition: all 0.2s ease;
+    box-shadow: 5px 5px 5px rgba(0.0, 0.0, 0.0,0.1);
 }
 
 .show-more:hover {
@@ -692,8 +707,12 @@ main {
     justify-content: center;
     align-items: center;
     gap: 40px;
-    max-width: 600px;
+    max-width: 700px;
     margin: 20px 20px 0px 20px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 10px 15px 5px rgba(0.0, 0.0, 0.0,0.1);
 }
 
 .form-text {
@@ -701,6 +720,10 @@ main {
     justify-content: center;
     align-items: center;
     gap: 50px;
+}
+
+.form-text input {
+    box-shadow: 5px 5px 5px rgba(0.0, 0.0, 0.0,0.1);
 }
 
 .form-data {
@@ -735,6 +758,7 @@ main {
     border: 2px solid lightgray;
     border-radius: 0px;
     outline: none;
+    box-shadow: 5px 5px 5px rgba(0.0, 0.0, 0.0,0.1);
 }
 
 .form-textarea textarea::-webkit-scrollbar {
@@ -765,6 +789,8 @@ main {
     font-size: 14px;
     color: #0b46bd;
     transition: all 0.2s ease;
+    box-shadow: 5px 5px 5px rgba(0.0, 0.0, 0.0,0.1);
+
 }
 
 .form-btn button:hover {

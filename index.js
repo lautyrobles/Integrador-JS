@@ -7,7 +7,11 @@ const categoriesList = document.querySelectorAll(".category")
 const cartBtn = document.querySelector(".cart-label")
 const cartMenu = document.querySelector(".cart")
 const menuBtn = document.querySelector(".menu-label")
-const barsMenu = document.querySelector("navbar-links")
+const barsMenu = document.querySelector(".navbar-links")
+const main = document.querySelector(".main")
+const headerLogIn = document.querySelector(".header-log")
+const productsCart = document.querySelector(".cart-container")
+const total = document.querySelector(".total")
 
 ////////////// CATEGORIAS ///////////////
 
@@ -18,7 +22,7 @@ const renderProducts = (productsList) => {
 
 // 3. Creamos la funcion para recibir la informacion de cada producto en un molde y mostrarlos
 const createProductTemplate = (product) => {
-    const { name, id, price, category, cardImg } = product
+    const { name, id, price, cardImg } = product
     return `
     <div class="products">
     <div class="products-cards">
@@ -27,10 +31,10 @@ const createProductTemplate = (product) => {
         </div>
         <div class="product-title">
             <h3>${name}</h3>
-            <p>${price}</p>
+            <p>$${price}</p>
         </div>
         <div class="btn">
-            <button data-id=${id} data-name=${name} data-price=${price} data-img=${cardImg}><a href="#">Agregar al carrito</a></button>
+            <button class="btn-add" data-id='${id}' data-name='${name}' data-price='${price}' data-img='${cardImg}'>Agregar al carrito</button>
         </div>
     </div>
 </div>
@@ -108,33 +112,159 @@ const setShowMoreVisibility = () => {
     showMoreBtn.classList.add("hidden")
 };
 
-// 1. Creamos la funcion inicializadora (init)
-
 //////////////////////// MENU HAMBURGUESA ///////////////////////////
 
 // 1. Creamos la funcion para mostrar el menu del carrito
 
 const toggleCart = () => {
     cartMenu.classList.toggle("open-cart")
-    if (barsMenu.classList.contains("open-menu")) {
-        barsMenu.classList.remove("open-menu")
-        return 
-    }
+     if (barsMenu.classList.contains("open-menu")) {
+         barsMenu.classList.remove("open-menu")
+         headerLogIn.classList.remove("open-log")
+         return 
+     }
 }
 
+// 2. Creamos dos funciones para abrir y cerrar los menues
 const toggleMenu = () => {
     barsMenu.classList.toggle("open-menu")
+    headerLogIn.classList.toggle("open-log")
     if (cartMenu.classList.contains("open-cart")) {
         cartMenu.classList.remove("open-cart")
         return
     }
 }
 
+const untoggleMenu = () => {
+    if (barsMenu.classList.contains("open-menu")) {
+        barsMenu.classList.remove("open-menu")
+        headerLogIn.classList.remove("open-log")
+    }
+    if (cartMenu.classList.contains("open-cart")) {
+        cartMenu.classList.remove("open-cart")
+    }
+    return
+}
+
+// 3. Creamos una funcion para cerrar los menues al clickear en el main
+
+const closeOnClick = () => {
+    barsMenu.classList.remove("open-menu")
+    cartMenu.classList.remove("open-cart")
+    headerLogIn.classList.remove("open-log")
+}
+
+// 4. Guardamos los items que vayamos a agregar en LocalStorage
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+// 5. Creamos una funcion para guardar nuestros productos en LocalStorage
+const saveCart = () => {
+    localStorage.setItem("cart", JSON.stringify(cart))
+}
+
+/// 6. Creamos una funcion para renderizar los productos en el carrito o mostrar el mensaje de carrito vacio
+const renderCart = () => {
+    if (!cart.length) {
+        productsCart.innerHTML = `
+        <div class="empty-message">
+                <p>No tienes ningun producto en el carrito</p>
+            </div> 
+        `
+        return
+    } 
+    productsCart.innerHTML = cart.map(createCartProductTemplate).join("");
+}
+
+// 7. Creamos el template para los productos del carrito
+const createCartProductTemplate = (cartProduct) => {
+    const {id, name, price, cardImg, quantity} = cartProduct
+    return `
+    <div class="cart-item">
+    <img src=${cardImg} alt=${name}>
+    <div class="item-data">
+    <div class="item-info">
+        <h4>${name}</h4>
+        <span class="item-price">$${price}</span>
+    </div>
+    <div class="item-handler">
+        <span class="quantity-handler down" data-id=${id}>-</span>
+        <span class="item-quantity">${quantity}</span>
+        <span class="quantity-handler up" data-id=${id}>+</span>
+    </div>
+</div>
+</div>
+    `
+}
+
+// 8. Creamos una funcion para mostrar el total de la compra
+const showCartTotal = () => {
+    total.innerHTML = `$${getCartTotal()}`
+}
+
+const getCartTotal = () => {
+    return cart.reduce((acc, cur) => acc + Number(cur.price) * cur.quantity, 0)
+}
+
+// 9. Creamos la funcion para agregar el producto al presionar el target de nuestra card ("Agregar al carrito")
+const addProduct = (e) => {
+    if (!e.target.classList.contains("btn-add")) {
+        return
+    }
+    const product = createProductData(e.target.dataset);
+    if (isExistingCartProduct(product)) {
+        addUnitToProduct(product)
+    } else {
+        createCartProduct(product)
+    }
+    updateCartState()
+}
+
+// 10. Funcion para desestructurar la informacion del producto que estamos agregando
+const createProductData = (product) => {
+    const {id, name, price, cardImg} = product
+    return {id, name, price, cardImg}
+}
+
+// 11. Creamos una funcion para comprobar si el producto ya esta en el carrito
+const isExistingCartProduct = () => {
+    return cart.find((item) => item.id === product.id)
+}
+
+// 12. Creamos la funcion para agregar la unidad al producto que ya tengo en el carrito
+const addUnitToProduct = (product) => {
+    cart = cart.map((cartProduct) => 
+    cartProduct.id === product.id
+    ? {...cartProduct, quantity: cartProduct.quantity + 1}
+    : cartProduct
+    )
+}
+
+// 13. Creamos una funcion para agregar un producto nuevo al carrito
+const createCartProduct = (product) => {
+    cart = [...cart, {...product, quantity: 1}]
+}
+
+// 13. Creamos una funcion para actualizar el carrito al refrescar la pagina
+const updateCartState = () => {
+    saveCart()
+    renderCart()
+    showCartTotal()
+}
+
+// 1. Creamos la funcion inicializadora (init)
 const init = () => {
     renderProducts(appState.products[0])
     showMoreBtn.addEventListener("click", showMoreProducts)
     categoriesContainer.addEventListener("click", applyFilter)
     cartBtn.addEventListener("click", toggleCart)
     menuBtn.addEventListener("click", toggleMenu)
+    window.addEventListener("scroll", untoggleMenu)
+    main.addEventListener("click", closeOnClick)
+    /// agregar productos al carrito//
+    document.addEventListener("DOMContentLoaded", renderCart)
+    document.addEventListener("DOMContentLoaded", showCartTotal)
+    productsContainer.addEventListener("click", addProduct)
 }
 init()
+
