@@ -156,7 +156,7 @@ const closeOnClick = () => {
 
 // 4. Guardamos los items que vayamos a agregar en LocalStorage
 
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 // 5. Creamos una funcion para guardar nuestros productos en LocalStorage
 const saveCart = () => {
@@ -206,12 +206,18 @@ const getCartTotal = () => {
     return cart.reduce((acc, cur) => acc + Number(cur.price) * cur.quantity, 0)
 }
 
+// 10. Funcion para desestructurar la informacion del producto que estamos agregando
+const createProductData = (product) => {
+    const {id, name, price, cardImg} = product
+    return {id, name, price, cardImg}
+}
+
 // 9. Creamos la funcion para agregar el producto al presionar el target de nuestra card ("Agregar al carrito")
 const addProduct = (e) => {
     if (!e.target.classList.contains("btn-add")) {
         return
     }
-    const product = createProductData(e.target.dataset);
+    const product = createProductData(e.target.cartProduct.dataset);
     if (isExistingCartProduct(product)) {
         addUnitToProduct(product)
     } else {
@@ -219,15 +225,8 @@ const addProduct = (e) => {
     }
     updateCartState()
 }
-
-// 10. Funcion para desestructurar la informacion del producto que estamos agregando
-const createProductData = (product) => {
-    const {id, name, price, cardImg} = product
-    return {id, name, price, cardImg}
-}
-
 // 11. Creamos una funcion para comprobar si el producto ya esta en el carrito
-const isExistingCartProduct = () => {
+const isExistingCartProduct = (product) => {
     return cart.find((item) => item.id === product.id)
 }
 
