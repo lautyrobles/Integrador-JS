@@ -12,6 +12,7 @@ const main = document.querySelector(".main")
 const headerLogIn = document.querySelector(".header-log")
 const productsCart = document.querySelector(".cart-container")
 const total = document.querySelector(".total")
+const btnDelete = document.querySelector(".cart-btn-delete")
 
 ////////////// CATEGORIAS ///////////////
 
@@ -148,7 +149,10 @@ const untoggleMenu = () => {
 
 // 3. Creamos una funcion para cerrar los menues al clickear en el main
 
-const closeOnClick = () => {
+const closeOnClick = (e) => {
+    if (e.target.classList.contains("btn-add") && cartMenu.classList.contains("open-cart")) {
+        return
+    }
     barsMenu.classList.remove("open-menu")
     cartMenu.classList.remove("open-cart")
     headerLogIn.classList.remove("open-log")
@@ -156,7 +160,7 @@ const closeOnClick = () => {
 
 // 4. Guardamos los items que vayamos a agregar en LocalStorage
 
-const cart = JSON.parse(localStorage.getItem("cart")) || [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 // 5. Creamos una funcion para guardar nuestros productos en LocalStorage
 const saveCart = () => {
@@ -206,25 +210,35 @@ const getCartTotal = () => {
     return cart.reduce((acc, cur) => acc + Number(cur.price) * cur.quantity, 0)
 }
 
+// 9. Creamos la funcion para agregar el producto al presionar el target de nuestra card ("Agregar al carrito")
+const addProduct = (e) => {
+    if (!e.target.classList.contains("btn-add")) {
+        return
+    }
+    const product = createProductData(e.target.dataset);
+    if (isExistingCartProduct(product)) {
+        addUnitToProduct(product)
+    } else {
+        createCartProduct(product);
+    }
+    moreThanTwoProductsCart()
+    updateCartState()
+}
+
+const moreThanTwoProductsCart = () => {
+    if (cart.length > 2) {
+        productsCart.classList.add("cart-scroll")
+    } else {
+        productsCart.classList.remove("cart-scroll")
+    }
+}
+
 // 10. Funcion para desestructurar la informacion del producto que estamos agregando
 const createProductData = (product) => {
     const {id, name, price, cardImg} = product
     return {id, name, price, cardImg}
 }
 
-// 9. Creamos la funcion para agregar el producto al presionar el target de nuestra card ("Agregar al carrito")
-const addProduct = (e) => {
-    if (!e.target.classList.contains("btn-add")) {
-        return
-    }
-    const product = createProductData(e.target.cartProduct.dataset);
-    if (isExistingCartProduct(product)) {
-        addUnitToProduct(product)
-    } else {
-        createCartProduct(product)
-    }
-    updateCartState()
-}
 // 11. Creamos una funcion para comprobar si el producto ya esta en el carrito
 const isExistingCartProduct = (product) => {
     return cart.find((item) => item.id === product.id)
@@ -241,7 +255,7 @@ const addUnitToProduct = (product) => {
 
 // 13. Creamos una funcion para agregar un producto nuevo al carrito
 const createCartProduct = (product) => {
-    cart = [...cart, {...product, quantity: 1}]
+    cart = [...cart, {...product, quantity: 1 }]
 }
 
 // 13. Creamos una funcion para actualizar el carrito al refrescar la pagina
@@ -249,6 +263,12 @@ const updateCartState = () => {
     saveCart()
     renderCart()
     showCartTotal()
+}
+
+const deleteCartProducts = () => {
+    cart = []
+    moreThanTwoProductsCart()
+    updateCartState()
 }
 
 // 1. Creamos la funcion inicializadora (init)
@@ -264,6 +284,8 @@ const init = () => {
     document.addEventListener("DOMContentLoaded", renderCart)
     document.addEventListener("DOMContentLoaded", showCartTotal)
     productsContainer.addEventListener("click", addProduct)
+    btnDelete.addEventListener("click", deleteCartProducts)
+    moreThanTwoProductsCart()
 }
 init()
 

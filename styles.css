@@ -159,6 +159,21 @@ main {
 
 /* MENU HAMBURGUESA CARRITO*/
 
+.cart-scroll {
+    overflow-y: scroll;
+}
+
+.cart-scroll::-webkit-scrollbar {
+    width: 10px;
+    background-color: white;
+}
+
+.cart-scroll::-webkit-scrollbar-thumb {
+    background: #00308F;
+    border-radius: 25px;
+    border: 2px solid white;
+}
+
 .cart {
     position: absolute;
     top: 50px;
@@ -204,6 +219,7 @@ main {
     border: 1px solid lightgray;
     box-shadow: 5px 5px 5px rgba( 0.0, 0.0, 0.0, 0.1);
     font-weight: 200;
+    margin-bottom: 10px;
 }
 
 .empty-message {
@@ -227,8 +243,9 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
     padding: 15px 0px 15px 0px;
+    margin-right: 10px;
 }
 
 .item-data {
@@ -237,6 +254,7 @@ main {
     align-items: center;
     flex-direction: column;
     gap: 20px;
+    width: 120px;
 }
 
 .cart-item img {
@@ -310,6 +328,32 @@ main {
 
 .cart-total span {
     color: rgb(36, 170, 49);
+}
+
+.cart-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    margin: 10px 0px 10px 0px;
+}
+
+.cart-btn button {
+    padding: 5px 10px;
+    outline: none;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 3px 3px 3px rgba(0.0, 0.0, 0.0,0.1);
+    color: #00308F;
+}
+
+.cart-btn button:hover {
+    color: #0093E9;
+    transform: scale(1.1);
 }
 
 .btn {
