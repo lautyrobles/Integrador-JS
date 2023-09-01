@@ -50,6 +50,7 @@ body::-webkit-scrollbar-thumb {
 .cart-bubble {
     background-color: #0093E9;
     font-size: 12px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     border-radius: 10px;
     padding: 0px 3px 1px 3px;
     position: absolute;
@@ -311,6 +312,27 @@ main {
     color: #0093E9;
 }
 
+.up {
+    color: green;
+    transition: all 0.4s ease;
+    font-weight: 700;
+}
+
+.up:hover {
+    background-color: lightgray;
+    transition: all 0.4s ease;
+}
+
+.down {
+    color: red;
+    transition: all 0.4s ease;
+    font-weight: 700;
+}
+
+.down:hover {
+    background-color: lightgray;
+    transition: all 0.4s ease;
+}
 .cart-total {
     display: flex;
     justify-content: center;
@@ -339,7 +361,7 @@ main {
     margin: 10px 0px 10px 0px;
 }
 
-.cart-btn button {
+.cart-btn-buy {
     padding: 5px 10px;
     outline: none;
     border: 1px solid lightgray;
@@ -351,9 +373,40 @@ main {
     color: #00308F;
 }
 
-.cart-btn button:hover {
+.cart-btn-buy:hover {
     color: #0093E9;
-    transform: scale(1.1);
+}
+
+.cart-btn-delete {
+    padding: 5px 10px;
+    outline: none;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 3px 3px 3px rgba(0.0, 0.0, 0.0,0.1);
+    color: #00308F;
+}
+
+.inactive-btn {
+    color: #00308F;
+    background-color: lightgray;
+    cursor: auto;
+    border: none;
+}
+
+.inactive-btn:hover {
+    color: #0093E9;
+    background-color: lightgray;
+    cursor: auto;
+    border: none;
+    transform: none;
+    transition: none;
+}
+
+.cart-btn-delete:hover {
+    color: #0093E9;
 }
 
 .btn {
@@ -942,4 +995,25 @@ main {
 
 .footer-info-icons i {
     font-size: 40px;
+}
+
+.active-modal {
+    padding: 15px 0px;
+    position: fixed;
+    bottom: 0;
+    color: white;
+    font-weight: 500;
+    background-color: rgb(49, 234, 49);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(200%);
+    transition: all 0.6s ease;
+    z-index: 1;
+}
+
+.show-modal {
+    transform: translateX(0%);
+    transition: all 0.4s ease;
 }
