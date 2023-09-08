@@ -70,8 +70,8 @@
             </div>
            
             <div class="cart-btn">
-                <button class="cart-btn-buy">Comprar</button>
                 <button class="cart-btn-delete">Vaciar</button>
+                <button class="cart-btn-buy">Comprar</button>
             </div>
         </div>
         
@@ -176,17 +176,30 @@
                     <form id="form">
                         <div class="form-text">
                             <div class="form-data">
+
+                                <div class="form-field">
                                 <input type="text" id="name-input" placeholder="Nombre">
-                                <input type="text" id="lastname-input" placeholder="Apellido">
-                                <input type="email" id="email-input" placeholder="Correo Electrónico">
+                                <small></small>
+                                </div>
+
+                                <div class="form-field">
+                                    <input type="text" id="lastname-input" placeholder="Apellido">
+                                <small></small>
+                                </div>
+
+                                <div class="form-field">
+                                    <input type="email" id="email-input" placeholder="Correo Electrónico">
+                                <small></small>
+                                </div>
+
                             </div>
-                            <div class="form-textarea">
-                                <textarea name="text" id="textarea" cols="30" rows="10" placeholder="Dejá tu consulta"></textarea>
+                            <div class="form-field">                             
+                                    <textarea name="text" id="textarea" cols="30" rows="10" placeholder="Dejá tu consulta"></textarea>
+                                    <small></small>
                             </div>
+                            
                         </div>
-                        <div class="form-btn">
-                            <button>Enviar</button>
-                        </div>
+                        <input type="submit" class="form-btn" value="Enviar Consulta">
                     </form>
                     
                 </div>
@@ -207,6 +220,7 @@
         </div>
     </footer>
     <div class="active-modal">Has agregado un producto al carrito!</div>
+    <div class="active-form-modal">Hemos recibido tu consulta! En breve nos estaremos comunicando.</div>
     <script src="data.js"></script>
     <script src="index.js"></script>
 </body>

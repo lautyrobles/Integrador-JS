@@ -15,6 +15,14 @@ const btnBuy = document.querySelector(".cart-btn-buy")
 const bubble = document.querySelector(".cart-bubble")
 const modalMsg = document.querySelector(".active-modal")
 
+const form = document.querySelector("#form")
+const nameInput = document.querySelector("#name-input")
+const lastNameInput = document.querySelector("#lastname-input")
+const mailInput = document.querySelector("#email-input")
+const textareaInput = document.querySelector("#textarea")
+const modalFormMsg = document.querySelector(".active-form-modal")
+
+
 
 const renderProducts = (productsList) => {  
     productsContainer.innerHTML += productsList.map(createProductTemplate).join("")
@@ -259,8 +267,10 @@ const currentBubbleAmount = () => {
 const inactiveBtn = (btn) => {
     if (!cart.length) {
         btn.classList.add("inactive-btn")
+        btn.classList.add("inactive-hover")
     } else {
         btn.classList.remove("inactive-btn")
+        btn.classList.remove("inactive-hover")
     }
 }
 
@@ -270,8 +280,6 @@ const showActiveModal = () => {
         modalMsg.classList.remove("show-modal")
     }, 1500)
 }
-
-
 
 const handleMinusQuantity = (id) => {
     const existingCartProduct = cart.find((item) => item.id === id);
@@ -308,6 +316,150 @@ const handleQuantity = (e) => {
     updateCartState()
 }
 
+/////////////////////
+
+const consults = JSON.parse(localStorage.getItem("consults")) || []
+const saveConsultToLocalStorage = () => {
+    localStorage.setItem("consults", JSON.stringify(consults))
+}
+
+const isBetween = (input, min, max) => {
+    return input.value.length >= min && input.value.length < max
+}
+
+const isEmpty = (input) => {
+    return !input.value.trim().length
+}
+
+const showError = (input, message) => {
+    const formField = input.parentElement
+    formField.classList.remove("success")
+    formField.classList.add("error")
+    const error = formField.querySelector("small")
+    error.style.display = "block"
+    error.textContent = message
+}
+
+const showSuccess = (input) => {
+    const formField = input.parentElement
+    formField.classList.remove("error")
+    formField.classList.add("success")
+    const error = formField.querySelector("small")
+    error.textContent = ""
+}
+
+const checkTextInput = (input) => {
+    let valid = false
+    const minCharacters = 3
+    const maxCharacters = 25
+    if(isEmpty(input)) {
+        showError(input, `Este campo es obligatorio`)
+        return
+    }
+    if(!isBetween(input, minCharacters, maxCharacters)) {
+        showError(input, `Este campo debe tener entre ${minCharacters} y ${maxCharacters} caracteres`)
+        return
+    }
+    showSuccess(input)
+    valid = true
+    return valid
+}
+
+const isEmailValid = (input) => {
+    const re = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,4})+$/
+    return re.test(input.value.trim())
+}
+
+const checkEmail = (input) => {
+    let valid = false
+    if (isEmpty(input)) {
+        showError(input, `Este campo es obligatorio`)
+        return
+    }
+    if (!isEmailValid(input)) {
+        showError(input, `El mail ingresado no es valido`)
+        return
+    }
+    showSuccess(input)
+    valid = true
+    return valid
+}
+
+const isMaxCharacter = (input, max) => {
+    return input.value.length > max
+}
+
+const isEmptyTextarea = (textarea) => {
+    return !textarea.value.trim().length
+}
+
+const showTextareaError = (textarea, message) => {
+    const formField = textarea.parentElement
+    formField.classList.remove("textarea-success")
+    formField.classList.add("textarea-error")
+    const error = formField.querySelector("small")
+    error.style.display = "block"
+    error.textContent = message
+}
+
+const showTextareaSuccess = (textarea) => {
+    const formField = textarea.parentElement
+    formField.classList.remove("textarea-error")
+    formField.classList.add("textarea-success")
+    const error = formField.querySelector("small")
+    error.textContent = ""
+}
+
+const checkTextArea = (textarea) => {
+    let valid = false
+    const maxTextCharacters = 250
+    if (isEmptyTextarea(textarea)) {
+        showTextareaError(textarea, `Este campo es obligatorio`)
+        return
+    }
+    if (isMaxCharacter(textarea, maxTextCharacters)) {
+        showTextareaError(textarea, `El limite de caracteres es de ${maxTextCharacters}`)
+        return
+    }
+    showTextareaSuccess(textarea)
+    valid = true
+    return valid
+}
+
+const showFormModal = () => {
+    modalFormMsg.classList.add("show-form-modal")
+    setTimeout(() => {
+        modalFormMsg.classList.remove("show-form-modal")
+    }, 3000);
+}
+
+const validateForm = (e) => {
+    e.preventDefault()
+
+    let isNameValid = checkTextInput(nameInput)
+    let isLastNameValid = checkTextInput(lastNameInput)
+    let isEmailValid = checkEmail(mailInput)
+    let isTextAreaValid = checkTextArea(textareaInput)
+    
+    let isValidForm = 
+    isNameValid && 
+    isLastNameValid && 
+    isEmailValid && 
+    isTextAreaValid
+
+    if (isValidForm) {
+        consults.push({
+            name: nameInput.value,
+            lastName: lastNameInput.value,
+            email: mailInput.value,
+            consulta: textareaInput.value
+        })
+        saveConsultToLocalStorage(consults)
+        showFormModal()
+        form.reset()
+    }
+}
+
 const init = () => {
     renderProducts(appState.products[0])
     showMoreBtn.addEventListener("click", showMoreProducts)
@@ -324,6 +476,12 @@ const init = () => {
     moreThanTwoProductsCart()
     inactiveBtn(btnDelete)
     inactiveBtn(btnBuy)
+
+    form.addEventListener("submit", validateForm)
+    nameInput.addEventListener("input", () => checkTextInput(nameInput))
+    lastNameInput.addEventListener("input", () => checkTextInput(lastNameInput))
+    mailInput.addEventListener("input", () => checkEmail(mailInput))
+    textareaInput.addEventListener("input", () => checkTextArea(textareaInput))
 }
 init()
 

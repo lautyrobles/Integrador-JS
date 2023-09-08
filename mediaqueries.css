@@ -133,7 +133,22 @@
 
     .form-text {
         display: flex;
-        flex-wrap: wrap;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 644px) {
+    #form {
+        width: 350px;
+    }
+
+    .form-text {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-text textarea {
+        width: 300px;
     }
 }
 
@@ -289,6 +304,18 @@
         height: 200px;
         order: 2;
     }
+
+    #form {
+        width: 300px;
+    }
+
+    #textarea {
+        width: 250px;
+    }
+
+    .active-form-modal {
+        text-align: center;
+    }
 }
 
 @media (max-width:350px) {
@@ -324,6 +351,36 @@
     #contact {
         padding-bottom: 0px;
         margin-bottom: 0px;
+    }
+
+    #form {
+        max-width: 220px;
+    }
+
+    #textarea {
+        max-width: 180px;
+    }
+
+    #name-input,
+    #lastname-input,
+    #email-input {
+        width: 180px;
+    }
+}
+
+@media (max-width: 400px) {
+    #form {
+        width: 250px;
+    }
+
+    #textarea {
+        width: 200px;
+    }
+
+    #name-input,
+    #lastname-input,
+    #email-input {
+        width: 200px;
     }
 }
 }

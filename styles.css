@@ -356,9 +356,12 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
     gap: 10px;
     margin: 10px 0px 10px 0px;
+}
+
+.cart-btn button {
+    width: 100px;
 }
 
 .cart-btn-buy {
@@ -375,6 +378,7 @@ main {
 
 .cart-btn-buy:hover {
     color: #0093E9;
+    transform: scale(1.1);
 }
 
 .cart-btn-delete {
@@ -407,6 +411,16 @@ main {
 
 .cart-btn-delete:hover {
     color: #0093E9;
+    transform: scale(1.1);
+}
+
+.inactive-hover {
+    color: gray;
+}
+
+.inactive-hover:hover {
+    color: gray;
+    transform: none;
 }
 
 .btn {
@@ -650,6 +664,13 @@ main {
     border-radius: 15px;
     cursor: pointer;
     background: lightgray;
+    color: gray;
+}
+
+.active:hover {
+    color: gray;
+    transform: none;
+    cursor: auto;
 }
 
 /* PRODUCTOS */
@@ -670,7 +691,7 @@ main {
     padding: 20px;
     background-color: white;
     width: 250px;
-    height: 350px;
+    height: 360px;
     margin: 20px;
     border: 2px solid lightgray;
     border-radius: 15px;
@@ -740,7 +761,7 @@ main {
     background-color: white;
     cursor: pointer;
     transition: all 0.2s ease;
-    box-shadow: 3px 3px 3px rgba(0.0, 0.0, 0.0,0.1)
+    box-shadow: 3px 3px 3px rgba(0.0, 0.0, 0.0,0.1);
 }
 
 .btn button:hover {
@@ -806,7 +827,7 @@ main {
     gap: 40px;
     max-width: 700px;
     margin: 20px 20px 0px 20px;
-    background-color: white;
+    background-color: rgb(238, 238, 238);
     padding: 20px;
     border-radius: 15px;
     box-shadow: 10px 15px 5px rgba(0.0, 0.0, 0.0,0.1);
@@ -815,7 +836,7 @@ main {
 .form-text {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     gap: 50px;
 }
 
@@ -828,7 +849,6 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 30px;
 }
 
 .form-data input {
@@ -838,32 +858,33 @@ main {
     border: 2px solid lightgray;
     border-radius: 15px;
     outline: none;
-
+    margin: 5px;
 }
 
-.form-textarea {
+.form-field {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.form-textarea textarea {
+.form-field textarea {
     display: flex;
     padding: 10px;
-    width: 300px;
+    width: 250px;
     height: 185px;
     border: 2px solid lightgray;
     border-radius: 0px;
     outline: none;
     box-shadow: 5px 5px 5px rgba(0.0, 0.0, 0.0,0.1);
+    margin-bottom: 7px;
 }
 
-.form-textarea textarea::-webkit-scrollbar {
+.form-field textarea::-webkit-scrollbar {
     background-color: white;
     width: 10px;
 }
 
-.form-textarea textarea::-webkit-scrollbar-thumb {
+.form-field textarea::-webkit-scrollbar-thumb {
     background: #0093E9;
     border-radius: 25px;
     border: 2px solid white;
@@ -876,7 +897,7 @@ main {
     align-items: center;
 }
 
-.form-btn button {
+.form-btn {
     padding: 5px 15px;
     outline: none;
     background-color: white;
@@ -890,12 +911,50 @@ main {
 
 }
 
-.form-btn button:hover {
+.form-btn:hover {
     color: #0093E9;
     transform: scale(1.1);
     transition: all 0.2s ease;
     cursor: pointer;
 }
+
+.form-field {
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    font-size: 14px;
+}
+
+.form-field.success input { 
+    border: 2px solid rgb(0, 213, 0);
+}
+
+.form-field.error input {
+    border: 2px solid rgb(255, 52, 52);
+}
+
+.form-field small {
+    color: rgb(255, 52, 52);
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+    display: none;
+}
+
+.textarea-success textarea { 
+    border: 2px solid rgb(0, 213, 0);
+}
+
+.textarea-error textarea {
+    border: 2px solid rgb(255, 52, 52);
+}
+
+/* .success-submit {
+
+} */
 
 .contact-info-list {
     display: flex;
@@ -1014,6 +1073,27 @@ main {
 }
 
 .show-modal {
+    transform: translateX(0%);
+    transition: all 0.4s ease;
+}
+
+.active-form-modal {
+    padding: 15px 0px;
+    position: fixed;
+    bottom: 0;
+    color: white;
+    font-weight: 500;
+    background-color: rgb(49, 234, 49);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(200%);
+    transition: all 2s ease;
+    z-index: 1;
+}
+
+.show-form-modal {
     transform: translateX(0%);
     transition: all 0.4s ease;
 }
